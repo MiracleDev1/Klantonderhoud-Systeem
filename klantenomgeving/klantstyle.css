@@ -13,6 +13,7 @@ body {
 
 .container {
     width: 90%;
+    height: 700px;
     max-width: 1200px;
     background-color: #6a6a6a;
     border: 1px solid #333;
@@ -94,6 +95,11 @@ nav button.active {
     padding: 0 10px;
 }
 
+/* Zorg ervoor dat de ID-span niet flex: 1 is om ruimte te besparen */
+.customer-row span[data-field="id"] {
+    flex: 0 0 100px; /* Vaste breedte voor ID */
+}
+
 .customer-row span strong {
     color: #e0e0e0;
 }
@@ -134,7 +140,8 @@ nav button.active {
 }
 
 
-/* --- STYLES VOOR DE POPUP --- */
+/* --- STYLES VOOR DE POPUP (Toevoegen) --- */
+/* (Deze stijlen zijn niet gewijzigd en werken nog steeds) */
 
 .modal {
     display: none; /* Standaard verborgen */
@@ -216,4 +223,77 @@ nav button.active {
 
 .form-submit-button:hover {
     background-color: #3a2fc1;
+}
+
+/* --- NIEUWE STYLES VOOR INLINE BEWERKEN --- */
+
+.customer-row.edit-mode span {
+    display: none; /* Verberg de tekstvelden in edit-modus */
+}
+
+.customer-row.edit-mode input {
+    /* Toon de inputvelden in edit-modus */
+    display: inline-block;
+    flex: 1; /* Zorg ervoor dat ze de ruimte innemen */
+    padding: 5px 10px;
+    margin: -5px 10px; /* Offset to align with row padding */
+    box-sizing: border-box;
+    border-radius: 4px;
+    border: 1px solid #777;
+    background-color: #555;
+    color: white;
+    font-size: 1em;
+}
+
+/* Verberg de originele bewerkingsknop in edit-modus */
+.customer-row.edit-mode .edit-icon {
+    display: none;
+}
+
+/* Styling voor de bewerkingsknoppen (Opslaan, Annuleren) */
+.edit-actions {
+    display: none; /* Standaard verborgen */
+    margin-left: auto;
+    padding-left: 20px;
+    gap: 10px;
+}
+
+.customer-row.edit-mode .edit-actions {
+    display: flex; /* Toon in edit-modus */
+}
+
+.edit-actions button {
+    background-color: transparent;
+    border: 1px solid #D1CEFF;
+    color: #D1CEFF;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 0.9em;
+    border-radius: 4px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.edit-actions .save-button {
+    background-color: #38c172; /* Groen voor opslaan */
+    border-color: #38c172;
+    color: white;
+}
+
+.edit-actions .save-button:hover {
+    background-color: #2d995b;
+}
+
+.edit-actions .cancel-button {
+    background-color: #ef5753; /* Rood voor annuleren */
+    border-color: #ef5753;
+    color: white;
+}
+
+.edit-actions .cancel-button:hover {
+    background-color: #d13d39;
+}
+
+/* Zorg ervoor dat het ID-veld geen input krijgt */
+.customer-row.edit-mode input[data-field="id"] {
+    display: none;
 }
